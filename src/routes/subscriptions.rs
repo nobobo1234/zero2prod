@@ -1,18 +1,15 @@
-use actix_web::{Responder, HttpResponse, web};
+use actix_web::{web, HttpResponse, Responder};
 use chrono::Utc;
-use uuid::Uuid;
 use sqlx::PgPool;
+use uuid::Uuid;
 
 #[derive(serde::Deserialize)]
 pub struct FormData {
     pub email: String,
-    pub name: String
+    pub name: String,
 }
 
-pub async fn subscribe(
-    form: web::Form<FormData>,
-    pool: web::Data<PgPool>
-) -> impl Responder {
+pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> impl Responder {
     // Make sure we use the result and error if something goes wrong
     match sqlx::query!(
         r#"
