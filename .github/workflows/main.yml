@@ -51,7 +51,7 @@ jobs:
             --features=${{ env.SQLX_FEATURES }} --no-default-features --locked
       
       - name: Migrate database
-      - run: |
+        run: |
           sudo apt-get install libpq-dev -y
           SKIP_DOCKER=true ./scripts/init_db.sh
 
@@ -107,9 +107,9 @@ jobs:
             --features=${{ env.SQLX_FEATURES }} --no-default-features --locked
       
       - name: Migrate database
-      - run: |
+        run: |
           sudo apt-get install libpq-dev -y
           SKIP_DOCKER=true ./scripts/init_db.sh
 
       - name: Run Clippy
-      - run: cargo clippy -- -D warnings
+        run: cargo clippy -- -D warnings
